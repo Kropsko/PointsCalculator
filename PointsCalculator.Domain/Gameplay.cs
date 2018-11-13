@@ -10,9 +10,9 @@ namespace PointsCalculator.Domain
         public DateTime? End { get; set; }
         public bool IsActive { get; set; }
         public bool IsEnded { get; set; }
-        public IEnumerable<Player> Players { get; set; }
-        public IEnumerable<Configuration> Configurations { get; set; }
-        public IEnumerable<Action> Actions { get; set; }
+        public ICollection<Player> Players { get; private set; }
+        public ICollection<Configuration> Configurations { get; private set; }
+        public ICollection<Action> Actions { get; private set; }
 
         public Gameplay()
         {

@@ -10,6 +10,7 @@ namespace PointsCalculator.Domain
         public DateTime CreateDate { get; set; }
         public DateTime DeleteDate { get; set; }
         public bool IsDeleted { get; set; }
-        public IEnumerable<Action> Actions { get; set; }
+        public ICollection<Action> Actions { get; set; }
+        public ICollection<Configuration> Configurations { get; set; }
     }
 }

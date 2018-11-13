@@ -6,12 +6,11 @@
         public int GameplayID { get; set; }
         public int PlayerId { get; set; }
         public Color Color { get; set; }
+        public Gameplay Gameplay { get; set; }
+        public Player Player { get; set; }
 
         public Configuration()
         {
         }
-
-        public virtual Gameplay Gameplay { get; set; }
-        public virtual Player Player { get; set; }
     }
 }
