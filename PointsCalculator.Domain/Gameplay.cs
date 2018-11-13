@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PointsCalculator.Domain
 {
@@ -15,6 +12,7 @@ namespace PointsCalculator.Domain
         public bool IsEnded { get; set; }
         public IEnumerable<Player> Players { get; set; }
         public IEnumerable<Configuration> Configurations { get; set; }
+        public IEnumerable<Action> Actions { get; set; }
 
         public Gameplay()
         {
