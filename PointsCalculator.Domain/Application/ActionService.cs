@@ -1,16 +1,11 @@
 ﻿using PointsCalculator.Domain.Infrastructure;
 using PointsCalculator.Domain.Infrastructure.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PointsCalculator.Domain.Application
 {
     public class ActionService : IActionService
     {
-        private readonly IActionRepository _actionRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public void CreateAwardPointsAction(Player player, Gameplay gameplay, int points)
         {
@@ -20,7 +15,8 @@ namespace PointsCalculator.Domain.Application
             awardPointAction.Gameplay = gameplay;
             awardPointAction.Points = points;
 
-            _actionRepository.CreateNewAction(awardPointAction);
+            _unitOfWork.ActionRepository.Add(awardPointAction);
+            _unitOfWork.Complete();
         }
 
         public void CreateSubstractPointsAction(Player player, Gameplay gameplay, int points)
@@ -31,12 +27,13 @@ namespace PointsCalculator.Domain.Application
             substractPointAction.Gameplay = gameplay;
             substractPointAction.Points = points;
 
-            _actionRepository.CreateNewAction(substractPointAction);
+            _unitOfWork.ActionRepository.Add(substractPointAction);
+            _unitOfWork.Complete();
         }
 
-        public ActionService(IActionRepository actionRepository)
+        public ActionService(IUnitOfWork unitOfWork)
         {
-            _actionRepository = actionRepository;
+            _unitOfWork = unitOfWork;
         }
     }
 }

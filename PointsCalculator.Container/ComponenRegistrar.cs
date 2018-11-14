@@ -23,6 +23,9 @@ namespace PointsCalculator.Container
             builder.RegisterType<ConfigurationRepository>().As<IConfigurationRepository>();
             builder.RegisterType<ActionRepository>().As<IActionRepository>();
 
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+
             builder.RegisterType<PointsCalculatorContext>();
 
             return builder.Build();

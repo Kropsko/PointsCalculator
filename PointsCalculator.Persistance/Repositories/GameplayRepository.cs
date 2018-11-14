@@ -3,26 +3,15 @@ using PointsCalculator.Domain.Infrastructure.Repository;
 
 namespace PointsCalculator.Persistance.Repositories
 {
-    public class GameplayRepository : IGameplayRepository
+    public class GameplayRepository : Repository<Gameplay>, IGameplayRepository
     {
-        private readonly PointsCalculatorContext _context;
-
-        public GameplayRepository(PointsCalculatorContext context)
+        public GameplayRepository(PointsCalculatorContext context) : base(context)
         {
-            _context = context;
         }
 
-        public Gameplay AddNewGameplay(Gameplay gameplay)
+        private PointsCalculatorContext PointsCalculatorContext
         {
-            _context.Gameplays.Add(gameplay);
-            _context.SaveChanges();
-
-            return gameplay;
-        }
-
-        public void UpdateGameplay(Gameplay gameplay)
-        {
-            _context.SaveChanges();
+            get { return Context as PointsCalculatorContext; }
         }
     }
 }

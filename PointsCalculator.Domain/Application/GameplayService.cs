@@ -6,26 +6,26 @@ namespace PointsCalculator.Domain.Application
 {
     public class GameplayService : IGameplayService
     {
-        private readonly IGameplayRepository _gameplayRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GameplayService(IGameplayRepository gameplayRepository)
+        public GameplayService(IUnitOfWork unitOfWork)
         {
-            _gameplayRepository = gameplayRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public void EndCurrentGemeplay(Gameplay gameplay)
+        public void EndGemeplay(Gameplay gameplay)
         {
             gameplay.End = DateTime.Now;
             gameplay.IsActive = false;
             gameplay.IsEnded = true;
-
-            _gameplayRepository.UpdateGameplay(gameplay);
+            _unitOfWork.Complete();
         }
 
         public Gameplay CreateNewGameplay()
         {
             Gameplay newGameplay = new Gameplay();
-            _gameplayRepository.AddNewGameplay(newGameplay);
+            _unitOfWork.GameplayRepository.Add(newGameplay);
+            _unitOfWork.Complete();
 
             return newGameplay;
         }
@@ -34,7 +34,7 @@ namespace PointsCalculator.Domain.Application
         {
             gameplay.Start = DateTime.Now;
             gameplay.IsActive = true;
-            _gameplayRepository.AddNewGameplay(gameplay);
+            _unitOfWork.Complete();
         }
     }
 }

@@ -1,20 +1,17 @@
-﻿using PointsCalculator.Domain.Infrastructure.Repository;
+﻿using PointsCalculator.Domain;
+using PointsCalculator.Domain.Infrastructure.Repository;
 
 namespace PointsCalculator.Persistance.Repositories
 {
-    public class ActionRepository : IActionRepository
+    public class ActionRepository : Repository<Action>, IActionRepository
     {
-        private readonly PointsCalculatorContext _context;
-
-        public void CreateNewAction(Domain.Action awardPointAction)
+        public ActionRepository(PointsCalculatorContext context) : base(context)
         {
-            _context.Actions.Add(awardPointAction);
-            _context.SaveChanges();
         }
 
-        public ActionRepository(PointsCalculatorContext context)
+        private PointsCalculatorContext PointsCalculatorContext
         {
-            _context = context;
+            get { return Context as PointsCalculatorContext; }
         }
     }
 }

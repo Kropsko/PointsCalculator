@@ -1,8 +1,6 @@
 ﻿namespace PointsCalculator.Domain.Infrastructure.Repository
 {
-    public interface IGameplayRepository
+    public interface IGameplayRepository : IRepository<Gameplay>
     {
-        Gameplay AddNewGameplay(Gameplay gameplay);
-        void UpdateGameplay(Gameplay gameplay);
     }
 }

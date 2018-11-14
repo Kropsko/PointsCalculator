@@ -1,16 +1,11 @@
 ﻿using PointsCalculator.Domain.Infrastructure;
 using PointsCalculator.Domain.Infrastructure.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PointsCalculator.Domain.Application
 {
     public class ConfigurationService : IConfigurationService
     {
-        private readonly IConfigurationRepository _configurationRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public void CreateNewConfiguration(Player player, Gameplay gamplay, Color color)
         {
@@ -19,17 +14,18 @@ namespace PointsCalculator.Domain.Application
             conf.Gameplay = gamplay;
             conf.Color = color;
 
-            _configurationRepository.AddNewConfiguration(conf);
+            _unitOfWork.ConfigurationRepository.Add(conf);
+            _unitOfWork.Complete();
         }
 
         public void UpdateConfiguration(Configuration configuration)
         {
-            _configurationRepository.UpdateConfiguration(configuration);
+            _unitOfWork.Complete();
         }
 
-        public ConfigurationService(IConfigurationRepository configurationRepository)
+        public ConfigurationService(IUnitOfWork unitOfWork)
         {
-            _configurationRepository = configurationRepository;
+            _unitOfWork = unitOfWork;
         }
     }
 }

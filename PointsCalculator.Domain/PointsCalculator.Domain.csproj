@@ -58,6 +58,8 @@
     <Compile Include="Infrastructure\IGameplayService.cs" />
     <Compile Include="Infrastructure\IPlayerService.cs" />
     <Compile Include="Infrastructure\Repository\IPlayerRepository.cs" />
+    <Compile Include="Infrastructure\Repository\IRepository.cs" />
+    <Compile Include="Infrastructure\Repository\IUnitOfWork.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -56,6 +56,8 @@ namespace PointsCalculator.ConsoleApp
 
             gameplayService.EndCurrentGemeplay(gameplay);
 
+            playerService.DeletePlayer(secondPlayer); 
+
             Console.ReadKey();
         }
     }

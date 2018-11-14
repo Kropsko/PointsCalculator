@@ -19,8 +19,6 @@ namespace PointsCalculator.Domain
             Players = new List<Player>();
             Configurations = new List<Configuration>();
             Actions = new List<Action>();
-
-            Start = DateTime.Now;
         }
     }
 }

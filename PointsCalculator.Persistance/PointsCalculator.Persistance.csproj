@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context.cs" />
+    <Compile Include="PointsCalculatorContext.cs" />
     <Compile Include="Migrations\201811121043388_InitialMigration.cs" />
     <Compile Include="Migrations\201811121043388_InitialMigration.Designer.cs">
       <DependentUpon>201811121043388_InitialMigration.cs</DependentUpon>
@@ -82,6 +82,8 @@
     <Compile Include="Repositories\ConfigurationRepository.cs" />
     <Compile Include="Repositories\GameplayRepository.cs" />
     <Compile Include="Repositories\PlayerRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
