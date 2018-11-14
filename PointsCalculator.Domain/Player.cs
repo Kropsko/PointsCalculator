@@ -7,8 +7,8 @@ namespace PointsCalculator.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime DeleteDate { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? DeleteDate { get; set; }
         public bool IsDeleted { get; set; }
         public ICollection<Action> Actions { get; set; }
         public ICollection<Configuration> Configurations { get; set; }

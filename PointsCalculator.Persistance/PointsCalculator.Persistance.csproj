@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201811131123181_NavigationPropertyPlayerToGameplay.Designer.cs">
       <DependentUpon>201811131123181_NavigationPropertyPlayerToGameplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811140728304_NullablePlayerDates.cs" />
+    <Compile Include="Migrations\201811140728304_NullablePlayerDates.Designer.cs">
+      <DependentUpon>201811140728304_NullablePlayerDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ActionRepository.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811131123181_NavigationPropertyPlayerToGameplay.resx">
       <DependentUpon>201811131123181_NavigationPropertyPlayerToGameplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811140728304_NullablePlayerDates.resx">
+      <DependentUpon>201811140728304_NullablePlayerDates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
