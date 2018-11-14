@@ -12,5 +12,13 @@ namespace PointsCalculator.Domain
         public bool IsDeleted { get; set; }
         public ICollection<Action> Actions { get; set; }
         public ICollection<Configuration> Configurations { get; set; }
+        public ICollection<Gameplay> Gameplays { get; set; }
+
+        public Player()
+        {
+            Actions = new List<Action>();
+            Configurations = new List<Configuration>();
+            Gameplays = new List<Gameplay>();
+        }
     }
 }

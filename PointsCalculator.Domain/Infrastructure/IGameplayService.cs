@@ -2,7 +2,8 @@
 {
     public interface IGameplayService
     {
-        Gameplay StartNewGameplay();
+        Gameplay CreateNewGameplay();
         void EndCurrentGemeplay(Gameplay gameplay);
+        void StartGameplay(Gameplay gameplay);
     }
 }

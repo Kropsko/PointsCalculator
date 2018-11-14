@@ -1,21 +1,23 @@
 ﻿using PointsCalculator.Domain;
-using PointsCalculator.Domain.Infrastructure;
+using PointsCalculator.Domain.Infrastructure.Repository;
 
 namespace PointsCalculator.Persistance.Repositories
 {
     public class GameplayRepository : IGameplayRepository
     {
-        private readonly Context _context;
+        private readonly PointsCalculatorContext _context;
 
-        public GameplayRepository(Context context)
+        public GameplayRepository(PointsCalculatorContext context)
         {
             _context = context;
         }
 
-        public void AddNewGameplay(Gameplay gameplay)
+        public Gameplay AddNewGameplay(Gameplay gameplay)
         {
             _context.Gameplays.Add(gameplay);
             _context.SaveChanges();
+
+            return gameplay;
         }
 
         public void UpdateGameplay(Gameplay gameplay)

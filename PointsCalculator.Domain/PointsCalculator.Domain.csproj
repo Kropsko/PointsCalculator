@@ -43,12 +43,21 @@
   <ItemGroup>
     <Compile Include="Action.cs" />
     <Compile Include="ActionType.cs" />
+    <Compile Include="Application\ActionService.cs" />
+    <Compile Include="Application\ConfigurationService.cs" />
     <Compile Include="Application\GameplayService.cs" />
+    <Compile Include="Application\PlayerService.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Gameplay.cs" />
-    <Compile Include="Infrastructure\IGameplayRepository.cs" />
+    <Compile Include="Infrastructure\IActionService.cs" />
+    <Compile Include="Infrastructure\IConfigurationService.cs" />
+    <Compile Include="Infrastructure\Repository\IActionRepository.cs" />
+    <Compile Include="Infrastructure\Repository\IConfigurationRepository.cs" />
+    <Compile Include="Infrastructure\Repository\IGameplayRepository.cs" />
     <Compile Include="Infrastructure\IGameplayService.cs" />
+    <Compile Include="Infrastructure\IPlayerService.cs" />
+    <Compile Include="Infrastructure\Repository\IPlayerRepository.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
