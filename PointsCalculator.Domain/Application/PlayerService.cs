@@ -25,6 +25,12 @@ namespace PointsCalculator.Domain.Application
             return player;
         }
 
+        public void UpdatePlayerName(Player player, string name)
+        {
+            player.Name = name;
+            _unitOfWork.Complete();
+        }
+
         public void DeletePlayer(Player player)
         {
             player.DeleteDate = DateTime.Now;
