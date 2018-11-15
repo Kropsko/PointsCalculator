@@ -2,7 +2,7 @@
 {
     public interface IPlayerService
     {
-        Player CreateNewplayer(string name);
+        Player CreateNewPlayer(string name);
         void DeletePlayer(Player player);
         void AwardPoints(Player player, Gameplay gameplay, int pointsCount);
         void SubstractPoints(Player player, Gameplay gameplay, int pointsCount);
