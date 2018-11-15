@@ -20,5 +20,11 @@ namespace PointsCalculator.Domain
             Configurations = new List<Configuration>();
             Gameplays = new List<Gameplay>();
         }
+
+        public Player(string name) : this()
+        {
+            Name = name;
+            CreateDate = DateTime.Now;
+        }
     }
 }

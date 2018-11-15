@@ -15,8 +15,10 @@ namespace PointsCalculator.Domain.Application
             _actionService.CreateAwardPointsAction(player, gameplay, pointsCount);
         }
 
-        public Player CreateNewplayer(Player player)
+        public Player CreateNewplayer(string name)
         {
+            Player player = new Player(name);     
+
             _unitOfWork.PlayerRepository.Add(player);
             _unitOfWork.Complete();
 
