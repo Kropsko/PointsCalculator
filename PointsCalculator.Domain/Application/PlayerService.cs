@@ -1,6 +1,7 @@
 ﻿using PointsCalculator.Domain.Infrastructure;
 using PointsCalculator.Domain.Infrastructure.Repository;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PointsCalculator.Domain.Application
@@ -52,6 +53,11 @@ namespace PointsCalculator.Domain.Application
             int penalty = actions.Where(x => x.ActionType == ActionType.SubstractingPoints).Sum(x => x.Points);
 
             return points - penalty;
+        }
+
+        public IEnumerable<Player> GetAllAvailablePlayers()
+        {
+            return _unitOfWork.PlayerRepository.Find(p => p.IsDeleted == false);
         }
 
         public PlayerService(IActionService actionService, IUnitOfWork unitOfWork)

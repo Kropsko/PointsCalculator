@@ -1,4 +1,6 @@
-﻿namespace PointsCalculator.Domain.Infrastructure
+﻿using System.Collections.Generic;
+
+namespace PointsCalculator.Domain.Infrastructure
 {
     public interface IPlayerService
     {
@@ -8,5 +10,6 @@
         void SubstractPoints(Player player, Gameplay gameplay, int pointsCount);
         int GetPlayerScoreForGameplay(Player player, Gameplay gameplay);
         void UpdatePlayerName(Player player, string name);
+        IEnumerable<Player> GetAllAvailablePlayers();
     }
 }
