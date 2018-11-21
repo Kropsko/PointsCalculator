@@ -50,6 +50,7 @@
     <Compile Include="Color.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Gameplay.cs" />
+    <Compile Include="GameplayPlayer.cs" />
     <Compile Include="Infrastructure\IActionService.cs" />
     <Compile Include="Infrastructure\IConfigurationService.cs" />
     <Compile Include="Infrastructure\Repository\IActionRepository.cs" />

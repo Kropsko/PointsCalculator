@@ -11,8 +11,8 @@ namespace PointsCalculator.Domain.Application
         {
             Action awardPointAction = new Action();
             awardPointAction.ActionType = ActionType.AwardingPoints;
-            awardPointAction.Player = player;
-            awardPointAction.Gameplay = gameplay;
+            awardPointAction.PlayerId = player.PlayerId;
+            awardPointAction.GameplayId = gameplay.GameplayId;
             awardPointAction.Points = points;
 
             _unitOfWork.ActionRepository.Add(awardPointAction);
@@ -23,8 +23,8 @@ namespace PointsCalculator.Domain.Application
         {
             Action substractPointAction = new Action();
             substractPointAction.ActionType = ActionType.SubstractingPoints;
-            substractPointAction.Player = player;
-            substractPointAction.Gameplay = gameplay;
+            substractPointAction.PlayerId = player.PlayerId;
+            substractPointAction.GameplayId = gameplay.GameplayId;
             substractPointAction.Points = points;
 
             _unitOfWork.ActionRepository.Add(substractPointAction);

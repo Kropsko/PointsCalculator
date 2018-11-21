@@ -18,7 +18,8 @@ namespace PointsCalculator.Domain.Application
 
         public Player CreateNewPlayer(string name)
         {
-            Player player = new Player(name);     
+            Player player = new Player(name);
+            player.CreateDate = DateTime.Now;
 
             _unitOfWork.PlayerRepository.Add(player);
             _unitOfWork.Complete();
@@ -47,7 +48,7 @@ namespace PointsCalculator.Domain.Application
 
         public int GetPlayerScoreForGameplay(Player player, Gameplay gameplay)
         {
-            var actions = _unitOfWork.ActionRepository.Find(a => a.PlayerId == player.Id && a.GameplayId == gameplay.Id);
+            var actions = _unitOfWork.ActionRepository.Find(a => a.PlayerId == player.PlayerId && a.GameplayId == gameplay.GameplayId).ToList();
 
             int points = actions.Where(x => x.ActionType == ActionType.AwardingPoints).Sum(x => x.Points);
             int penalty = actions.Where(x => x.ActionType == ActionType.SubstractingPoints).Sum(x => x.Points);
@@ -58,6 +59,11 @@ namespace PointsCalculator.Domain.Application
         public IEnumerable<Player> GetAllAvailablePlayers()
         {
             return _unitOfWork.PlayerRepository.Find(p => p.IsDeleted == false);
+        }
+
+        public Player GetPlayer(int id)
+        {
+            return _unitOfWork.PlayerRepository.Get(id);
         }
 
         public PlayerService(IActionService actionService, IUnitOfWork unitOfWork)

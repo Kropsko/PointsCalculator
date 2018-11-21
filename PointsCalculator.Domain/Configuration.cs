@@ -2,7 +2,7 @@
 {
     public class Configuration
     {
-        public int Id { get; set; }
+        public int ConfigurationId { get; set; }
         public int GameplayID { get; set; }
         public int PlayerId { get; set; }
         public Color Color { get; set; }

@@ -5,20 +5,20 @@ namespace PointsCalculator.Domain
 {
     public class Player
     {
-        public int Id { get; set; }
+        public int PlayerId { get; set; }
         public string Name { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
         public bool IsDeleted { get; set; }
         public ICollection<Action> Actions { get; set; }
         public ICollection<Configuration> Configurations { get; set; }
-        public ICollection<Gameplay> Gameplays { get; set; }
+        public ICollection<GameplayPlayer> Gameplays { get; set; }
 
         public Player()
         {
             Actions = new List<Action>();
             Configurations = new List<Configuration>();
-            Gameplays = new List<Gameplay>();
+            Gameplays = new List<GameplayPlayer>();
         }
 
         public Player(string name) : this()

@@ -5,6 +5,7 @@ namespace PointsCalculator.Domain.Infrastructure
     public interface IPlayerService
     {
         Player CreateNewPlayer(string name);
+        Player GetPlayer(int id);
         void DeletePlayer(Player player);
         void AwardPoints(Player player, Gameplay gameplay, int pointsCount);
         void SubstractPoints(Player player, Gameplay gameplay, int pointsCount);

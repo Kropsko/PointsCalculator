@@ -2,5 +2,6 @@
 {
     public interface IGameplayRepository : IRepository<Gameplay>
     {
+        Gameplay GetCompleteGameplayWithIncludes(int id);
     }
 }

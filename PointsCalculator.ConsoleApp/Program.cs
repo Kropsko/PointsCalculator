@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using PointsCalculator.Container;
-using PointsCalculator.Domain;
 using PointsCalculator.Domain.Infrastructure;
 using System;
 
@@ -18,45 +17,39 @@ namespace PointsCalculator.ConsoleApp
             var configurationService = container.Resolve<IConfigurationService>();
             var actionService = container.Resolve<IActionService>();
 
-            var gameplay = gameplayService.CreateNewGameplay();
+            var gameplay = gameplayService.GetCompleteGameplay(1); //gameplayService.CreateNewGameplay();
 
-            Player player = new Player();
-            player.Name = "Testowy gracz";
-            player.CreateDate = DateTime.Now;
+            //var playerOne = playerService.CreateNewPlayer("Gracz 1");
+            var playerOne = playerService.GetPlayer(1);
+            //var playerTwo = playerService.CreateNewPlayer("Gracz 2");
+            var playerTwo = playerService.GetPlayer(2);
+            //var playerThree = playerService.CreateNewPlayer("Gracz 3");
+            var playerThree = playerService.GetPlayer(3);
 
-            Player secondPlayer = new Player();
-            secondPlayer.Name = "Kolejny gracz";
-            secondPlayer.CreateDate = DateTime.Now;
+            //gameplayService.SetPlayerForGameplay(playerOne, gameplay);
+            //gameplayService.SetPlayerForGameplay(playerTwo, gameplay);
 
-            gameplay.Players.Add(player);
-            gameplay.Players.Add(secondPlayer);
+            //configurationService.CreateNewConfiguration(playerOne, gameplay, Color.Red);
+            //configurationService.CreateNewConfiguration(playerTwo, gameplay, Color.Black);
 
-            Configuration conf = new Configuration();
-            conf.Player = player;
-            conf.Color = Color.Blue;
+            //gameplayService.StartGameplay(gameplay);
 
-            Configuration secondConf = new Configuration();
-            secondConf.Player = secondPlayer;
-            secondConf.Color = Color.Red;
+            //playerService.AwardPoints(playerOne, gameplay, 10);
+            //playerService.AwardPoints(playerOne, gameplay, 5);
+            //playerService.AwardPoints(playerOne, gameplay, 2);
+            //playerService.SubstractPoints(playerOne, gameplay, 5);
+            //playerService.AwardPoints(playerTwo, gameplay, 1);
+            //playerService.AwardPoints(playerTwo, gameplay, 2);
+            //playerService.AwardPoints(playerTwo, gameplay, 3);
 
-            gameplay.Configurations.Add(conf);
-            gameplay.Configurations.Add(secondConf);
+            //gameplayService.EndGemeplay(gameplay);
 
-            gameplayService.StartGameplay(gameplay);
+            //playerService.DeletePlayer(playerThree);
 
-            Domain.Action addPoints = new Domain.Action();
-            addPoints.ActionType = ActionType.AwardingPoints;
-            addPoints.Gameplay = gameplay;
-            addPoints.Player = player;
-            addPoints.Points = 5;
-
-            gameplay.Actions.Add(addPoints);
-            gameplay.Actions.Add(addPoints);
-            gameplay.Actions.Add(addPoints);
-
-            gameplayService.EndCurrentGemeplay(gameplay);
-
-            playerService.DeletePlayer(secondPlayer); 
+            foreach (var player in gameplay.Players)
+            {
+                Console.WriteLine($"Player: {player.Player.Name} has {playerService.GetPlayerScoreForGameplay(player.Player, gameplay)} points.");
+            }
 
             Console.ReadKey();
         }

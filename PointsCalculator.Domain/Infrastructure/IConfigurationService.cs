@@ -2,7 +2,8 @@
 {
     public interface IConfigurationService
     {
-        void CreateNewConfiguration(Player player, Gameplay gamplay, Color color);
+        Configuration CreateNewConfiguration(Player player, Gameplay gamplay, Color color);
+        Configuration GetPlayerConfigurationForGameplay(Player player, Gameplay gamplay);
         void UpdateConfiguration(Configuration configuration);
     }
 }

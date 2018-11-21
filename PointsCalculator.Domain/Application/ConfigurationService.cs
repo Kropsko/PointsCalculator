@@ -1,5 +1,6 @@
 ﻿using PointsCalculator.Domain.Infrastructure;
 using PointsCalculator.Domain.Infrastructure.Repository;
+using System.Linq;
 
 namespace PointsCalculator.Domain.Application
 {
@@ -7,15 +8,22 @@ namespace PointsCalculator.Domain.Application
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public void CreateNewConfiguration(Player player, Gameplay gamplay, Color color)
+        public Configuration CreateNewConfiguration(Player player, Gameplay gamplay, Color color)
         {
             Configuration conf = new Configuration();
-            conf.Player = player;
-            conf.Gameplay = gamplay;
+            conf.PlayerId = player.PlayerId;
+            conf.GameplayID = gamplay.GameplayId;
             conf.Color = color;
 
             _unitOfWork.ConfigurationRepository.Add(conf);
             _unitOfWork.Complete();
+
+            return conf;
+        }
+
+        public Configuration GetPlayerConfigurationForGameplay(Player player, Gameplay gamplay)
+        {
+            return _unitOfWork.ConfigurationRepository.Find(c => c.PlayerId == player.PlayerId && c.GameplayID == gamplay.GameplayId).FirstOrDefault();
         }
 
         public void UpdateConfiguration(Configuration configuration)

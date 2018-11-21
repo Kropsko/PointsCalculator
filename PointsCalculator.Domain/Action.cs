@@ -2,7 +2,7 @@
 {
     public class Action
     {
-        public int Id { get; set; }
+        public int ActionId { get; set; }
         public int GameplayId { get; set; }
         public int PlayerId { get; set; }
         public ActionType ActionType { get; set; }
