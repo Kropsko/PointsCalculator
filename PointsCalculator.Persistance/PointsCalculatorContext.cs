@@ -10,16 +10,15 @@ namespace PointsCalculator.Persistance
         public DbSet<Configuration> Configurations { get; set; }
         public DbSet<Domain.Action> Actions { get; set; }
 
-        //private static bool _created = false;
-        //public PointsCalculatorContext()
-        //{
-        //    if (!_created)
-        //    {
-        //        _created = true;
-        //        Database.EnsureDeleted();
-        //        Database.EnsureCreated();
-        //    }
-        //}
+        private static bool _created = false;
+        public PointsCalculatorContext()
+        {
+            if (!_created)
+            {
+                _created = true;
+                Database.EnsureCreated();
+            }
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
