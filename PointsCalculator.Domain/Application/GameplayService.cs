@@ -16,6 +16,9 @@ namespace PointsCalculator.Domain.Application
 
         public void EndGemeplay(Gameplay gameplay)
         {
+            if (gameplay == null)
+                throw new ArgumentException("Gameplay object cannot be null.");
+
             gameplay.End = DateTime.Now;
             gameplay.IsActive = false;
             gameplay.IsEnded = true;
@@ -33,11 +36,17 @@ namespace PointsCalculator.Domain.Application
 
         public Gameplay GetCompleteGameplay(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException("Gameplay id has to be greater than zero.");
+
             return _unitOfWork.GameplayRepository.GetCompleteGameplayWithIncludes(id);
         }
 
         public void StartGameplay(Gameplay gameplay)
         {
+            if (gameplay == null)
+                throw new ArgumentException("Gameplay object cannot be null.");
+
             gameplay.Start = DateTime.Now;
             gameplay.IsActive = true;
             _unitOfWork.Complete();
@@ -45,6 +54,12 @@ namespace PointsCalculator.Domain.Application
 
         public void SetPlayerForGameplay(Player player, Gameplay gameplay)
         {
+            if (player == null || player.PlayerId <= 0)
+                throw new ArgumentException("Player id has to be greater than zero.");
+
+            if (gameplay == null || gameplay.GameplayId <= 0)
+                throw new ArgumentException("Gameplay id has to be greater than zero.");
+
             GameplayPlayer gameplayPlayer = new GameplayPlayer();
             gameplayPlayer.GameplayId = gameplay.GameplayId;
             gameplayPlayer.PlayerId = player.PlayerId;

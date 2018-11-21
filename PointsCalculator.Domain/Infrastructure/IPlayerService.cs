@@ -7,8 +7,8 @@ namespace PointsCalculator.Domain.Infrastructure
         Player CreateNewPlayer(string name);
         Player GetPlayer(int id);
         void DeletePlayer(Player player);
-        void AwardPoints(Player player, Gameplay gameplay, int pointsCount);
-        void SubstractPoints(Player player, Gameplay gameplay, int pointsCount);
+        void AwardPoints(Player player, Gameplay gameplay, int points);
+        void SubstractPoints(Player player, Gameplay gameplay, int points);
         int GetPlayerScoreForGameplay(Player player, Gameplay gameplay);
         void UpdatePlayerName(Player player, string name);
         IEnumerable<Player> GetAllAvailablePlayers();
