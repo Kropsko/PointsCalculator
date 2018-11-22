@@ -17,7 +17,10 @@ namespace PointsCalculator.Domain.Application
         public void EndGemeplay(Gameplay gameplay)
         {
             if (gameplay == null)
-                throw new ArgumentException("Gameplay object cannot be null.");
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             gameplay.End = DateTime.Now;
             gameplay.IsActive = false;
@@ -37,7 +40,7 @@ namespace PointsCalculator.Domain.Application
         public Gameplay GetCompleteGameplay(int id)
         {
             if (id <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+                throw new ArgumentOutOfRangeException(nameof(id), "Gameplay id should have positive value");
 
             return _unitOfWork.GameplayRepository.GetCompleteGameplayWithIncludes(id);
         }
@@ -45,7 +48,10 @@ namespace PointsCalculator.Domain.Application
         public void StartGameplay(Gameplay gameplay)
         {
             if (gameplay == null)
-                throw new ArgumentException("Gameplay object cannot be null.");
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             gameplay.Start = DateTime.Now;
             gameplay.IsActive = true;
@@ -54,11 +60,17 @@ namespace PointsCalculator.Domain.Application
 
         public void SetPlayerForGameplay(Player player, Gameplay gameplay)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             GameplayPlayer gameplayPlayer = new GameplayPlayer();
             gameplayPlayer.GameplayId = gameplay.GameplayId;

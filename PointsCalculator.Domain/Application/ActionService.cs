@@ -10,14 +10,20 @@ namespace PointsCalculator.Domain.Application
 
         public void CreateAwardPointsAction(Player player, Gameplay gameplay, int points)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if(gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             if (points <= 0)
-                throw new ArgumentException("Award points have to be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(points), "Points should have positive value");
 
             Action awardPointAction = new Action();
             awardPointAction.ActionType = ActionType.AwardingPoints;
@@ -31,14 +37,20 @@ namespace PointsCalculator.Domain.Application
 
         public void CreateSubstractPointsAction(Player player, Gameplay gameplay, int points)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             if (points <= 0)
-                throw new ArgumentException("Penalty points have to be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(points), "Points should have positive value");
 
             Action substractPointAction = new Action();
             substractPointAction.ActionType = ActionType.SubstractingPoints;

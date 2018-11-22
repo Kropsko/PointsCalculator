@@ -11,11 +11,17 @@ namespace PointsCalculator.Domain.Application
 
         public Configuration CreateNewConfiguration(Player player, Gameplay gameplay, Color color)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             Configuration conf = new Configuration();
             conf.PlayerId = player.PlayerId;
@@ -30,11 +36,17 @@ namespace PointsCalculator.Domain.Application
 
         public Configuration GetPlayerConfigurationForGameplay(Player player, Gameplay gameplay)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             return _unitOfWork.ConfigurationRepository.Find(c => c.PlayerId == player.PlayerId && c.GameplayID == gameplay.GameplayId).FirstOrDefault();
         }

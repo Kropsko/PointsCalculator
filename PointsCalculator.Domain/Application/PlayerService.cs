@@ -13,22 +13,31 @@ namespace PointsCalculator.Domain.Application
 
         public void AwardPoints(Player player, Gameplay gameplay, int points)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             if (points <= 0)
-                throw new ArgumentException("Award points have to be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(points), "Points should have positive value");
 
             _actionService.CreateAwardPointsAction(player, gameplay, points);
         }
 
         public Player CreateNewPlayer(string name)
         {
-            if(string.IsNullOrWhiteSpace(name) || name.Length < 1)
-                throw new ArgumentException("Player's name has to be at least 1 character");
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
+            if (name.Length < 1)
+                throw new ArgumentOutOfRangeException(nameof(name), "Player's name has to be at least 1 character");
 
             Player player = new Player(name);
             player.CreateDate = DateTime.Now;
@@ -41,11 +50,17 @@ namespace PointsCalculator.Domain.Application
 
         public void UpdatePlayerName(Player player, string name)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (string.IsNullOrWhiteSpace(name) || name.Length < 1)
-                throw new ArgumentException("Player's name has to be at least 1 character");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
+            if (name.Length < 1)
+                throw new ArgumentOutOfRangeException(nameof(name), "Player's name has to be at least 1 character");
 
             player.Name = name;
             _unitOfWork.Complete();
@@ -53,8 +68,11 @@ namespace PointsCalculator.Domain.Application
 
         public void DeletePlayer(Player player)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
+
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
 
             player.DeleteDate = DateTime.Now;
             player.IsDeleted = true;
@@ -64,25 +82,37 @@ namespace PointsCalculator.Domain.Application
 
         public void SubstractPoints(Player player, Gameplay gameplay, int points)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             if (points <= 0)
-                throw new ArgumentException("Penalty points have to be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(points), "Points should have positive value");
 
             _actionService.CreateSubstractPointsAction(player, gameplay, points);
         }
 
         public int GetPlayerScoreForGameplay(Player player, Gameplay gameplay)
         {
-            if (player == null || player.PlayerId <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+            if (player == null)
+                throw new ArgumentNullException(nameof(player));
 
-            if (gameplay == null || gameplay.GameplayId <= 0)
-                throw new ArgumentException("Gameplay id has to be greater than zero.");
+            if (player.PlayerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(player.PlayerId));
+
+            if (gameplay == null)
+                throw new ArgumentNullException(nameof(gameplay));
+
+            if (gameplay.GameplayId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(gameplay.GameplayId));
 
             var actions = _unitOfWork.ActionRepository.Find(a => a.PlayerId == player.PlayerId && a.GameplayId == gameplay.GameplayId).ToList();
 
@@ -100,7 +130,7 @@ namespace PointsCalculator.Domain.Application
         public Player GetPlayer(int id)
         {
             if (id <= 0)
-                throw new ArgumentException("Player id has to be greater than zero.");
+                throw new ArgumentOutOfRangeException(nameof(id), "Player id should have positive value");
 
             return _unitOfWork.PlayerRepository.Get(id);
         }
